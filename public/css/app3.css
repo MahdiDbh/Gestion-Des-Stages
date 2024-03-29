@@ -1,0 +1,7 @@
+.sidebar-logo {
+    display: block; /* Fait du logo un bloc pour ajuster les marges */
+    position: absolute;
+    left: 50%; /* Place le logo au centre horizontalement */
+    bottom: 5%; /* Place le logo en bas du sidebar */
+    transform: translateX(-50%); /* Centre le logo par rapport à son propre axe horizontal */
+}
