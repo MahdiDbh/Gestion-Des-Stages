@@ -32,7 +32,7 @@ Accueil
                 <div class="inner">
                   <h3>@if(isset($totalNbrSms)) {{ $totalNbrSms  }} @endif</h3>
 
-                  <p>stat 1  </p>
+                  <p>Tache</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-telegram"></i>
@@ -47,7 +47,7 @@ Accueil
                 <div class="inner">
                   <h3>@if(isset($totalNbrSmsMobilis)) {{ $totalNbrSmsMobilis  }} @endif<sup style="font-size: 20px"></sup></h3>
 
-                  <p>STAT2 <strong></strong></p>
+                  <p>Evaluation <strong></strong></p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
@@ -62,7 +62,7 @@ Accueil
                 <div class="inner">
                   <h3>@if(isset($totalNbrSmsDjezzy)) {{ $totalNbrSmsDjezzy  }} @endif </h3>
 
-                  <p>STAT 3 <strong></strong></p>
+                  <p>Fichier<strong></strong></p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
@@ -77,7 +77,7 @@ Accueil
                 <div class="inner">
                   <h3>@if(isset($totalNbrSmsOoredoo)) {{ $totalNbrSmsOoredoo  }} @endif</h3>
 
-                  <p>STAT <strong></strong></p>
+                  <p>Stage<strong></strong></p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>

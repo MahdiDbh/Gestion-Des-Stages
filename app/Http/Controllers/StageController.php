@@ -31,7 +31,8 @@ class StageController extends Controller
      */
     public function create()
     {
-        //
+        $permission = Permission::get();
+        return view('stage.create',compact('stage'));
     }
 
     /**

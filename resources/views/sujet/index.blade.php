@@ -24,7 +24,7 @@ Gestion Sujet
 
 <div class="card-header">
 
-    <button class=" mr-3 btn btn-primary"> <a href="{{ route('sujet.create') }}" class="" style="color:#FFF ;text-decoration:none" >Ajouter un sujet</i></a>
+    <button class=" mr-3 btn btn-primary"> <a href="{{ route('sujet.create') }}" class="" style="color:#FFF ;text-decoration:none" >Ajouter un Sujet</a>
     </button>
 
 </div>
@@ -35,9 +35,9 @@ Gestion Sujet
             <tr>
 
                 <th>Intitulé</th>
-                <th>Encadrant</th>
-                <th>Stagiaire</th>
-                <th>Statut</th>
+                <th>Discription</th>
+                <th>Encadrent</th>
+                <th>Valide</th>
                 <th>Action</th>
 
 
@@ -45,7 +45,7 @@ Gestion Sujet
             </tr>
             </thead>
                 <tbody>
-                    {{-- @foreach($stage as $x) --}}
+                    {{-- @foreach($sujet as $x) --}}
                     <tr>
 
                         <td></td>
@@ -59,7 +59,7 @@ Gestion Sujet
 
 
                             @can('sujet-edit')  <a class="btn btn-primary" href="{{ route('sujet.edit',1) }}">Modifier</a> @endcan
-                            @can('sujet-delete')     {!! Form::open(['method' => 'DELETE','route' => ['sujet.destroy', 1],'style'=>'display:inline']) !!}
+                            @can('stage-delete')     {!! Form::open(['method' => 'DELETE','route' => ['stage.destroy', 1],'style'=>'display:inline']) !!}
                                      {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-stage'] ) !!} @endcan
                                  {!! Form::close() !!}
 

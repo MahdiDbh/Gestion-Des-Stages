@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use Illuminate\Http\Request;
 
 class SujetController extends Controller
@@ -31,7 +32,8 @@ class SujetController extends Controller
      */
     public function create()
     {
-        //
+        $permission = Permission::get();
+        return view('sujet.create',compact('sujet'));
     }
 
     /**
