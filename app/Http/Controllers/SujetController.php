@@ -32,8 +32,7 @@ class SujetController extends Controller
      */
     public function create()
     {
-        $permission = Permission::get();
-        return view('sujet.create',compact('sujet'));
+    
     }
 
     /**
