@@ -3,6 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\ActivityLog;
+use App\Models\Stage;
+use App\Models\Sujet;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Hash;
+use Illuminate\Support\Arr;
+use Spatie\Permission\Models\Permission;
+
 
 class StageController extends Controller
 {
@@ -21,6 +32,7 @@ class StageController extends Controller
     }
     public function index()
     {
+
         return view('stage.index');
     }
 
@@ -31,7 +43,9 @@ class StageController extends Controller
      */
     public function create()
     {
-        return view('stage.create');
+        $stagiaire = Stagiaire::pluck('name','name')->all(); 
+        $encadrant = Encadrent::pluck('name','name')->all();
+        return view('stage.create',compact('roles','stagiaire','encadrant'));
     }
 
     /**
@@ -64,7 +78,7 @@ class StageController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('stage.edit');
     }
 
     /**

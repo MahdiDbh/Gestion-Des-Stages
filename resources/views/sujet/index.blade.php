@@ -58,9 +58,9 @@ Gestion Sujet
                         <td>
 
 
-                            @can('sujet-edit')  <a class="btn btn-primary" href="{{ route('sujet.edit',1) }}">Modifier</a> @endcan
-                            @can('stage-delete')     {!! Form::open(['method' => 'DELETE','route' => ['stage.destroy', 1],'style'=>'display:inline']) !!}
-                                     {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-stage'] ) !!} @endcan
+                            @can('sujet-edit')  <a class="btn btn-primary" href="{{ route('sujet.edit',1 ) }}">Modifier</a> @endcan
+                            @can('sujet-delete')     {!! Form::open(['method' => 'DELETE','route' => ['sujet.destroy', 1],'style'=>'display:inline']) !!}
+                                     {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-sujet'] ) !!} @endcan
                                  {!! Form::close() !!}
 
                         </td>

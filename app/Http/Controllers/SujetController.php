@@ -4,6 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\ActivityLog;
+use App\Models\Sujet;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Hash;
+use Illuminate\Support\Arr;
+use spatie\Permession\Models\Permession;
+
 
 class SujetController extends Controller
 {
@@ -22,6 +32,7 @@ class SujetController extends Controller
   
     public function index()
     {
+
         return view('sujet.index');
     }
 
@@ -32,7 +43,9 @@ class SujetController extends Controller
      */
     public function create()
     {
-    
+        Sujet::sujet
+        
+        return view('sujet.create');
     }
 
     /**

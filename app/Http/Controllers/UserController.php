@@ -9,7 +9,6 @@ use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
-//use DB;
 use Hash;
 use Illuminate\Support\Arr;
 use Spatie\Permission\Models\Permission;

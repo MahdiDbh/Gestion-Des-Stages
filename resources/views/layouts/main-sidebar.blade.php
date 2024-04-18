@@ -115,7 +115,7 @@
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
                                 <a href="{{route('sujet.index')}}" class="nav-link active">
-                                <i class="fa-solid fa-heading"></i>
+                                <i class="fa-solid fas fa-file"></i>
                                 <p>
                                    Sujet
                                     <i class=""></i>
