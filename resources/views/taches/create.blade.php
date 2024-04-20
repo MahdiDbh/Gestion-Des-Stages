@@ -35,18 +35,14 @@ Créer tache
 </div>
 @endif
 
-
-
-
-
-
 <div style="margin-top:-0.5cm;">
 {!! Form::open(array('route' => 'taches.store','method'=>'POST')) !!}
     <div class="card-body">
     <div class="form-group">
                         <label>Intitulé</label>
                         <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                      </div>     
+                      </div>
+     
       </div>
 
     <!-- /.card-body -->

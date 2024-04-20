@@ -22,7 +22,7 @@ class FichierController extends Controller
     
     public function index()
     {
-        //
+        return view("fichier.index");
     }
 
     /**
@@ -32,7 +32,7 @@ class FichierController extends Controller
      */
     public function create()
     {
-        //
+        return view("fichier.create");
     }
 
     /**

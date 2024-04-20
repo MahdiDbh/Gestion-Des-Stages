@@ -22,59 +22,50 @@ Gestion d'utilisateurs
 @section('content')
 
 <div class="" style="margin-left: 1cm; margin-bottom:1cm">
-        <a class="btn btn-success" href="{{ route('sujet.create') }}"> Céer un sujet</a>
+        <a class="btn btn-success" href="{{ route('sujet.index') }}"> Retour</a>
 </div>
 
-<div class="card">
-    <!-- /.card-header -->
-    <div class="card-body">
-      <table id="example1" class="table table-bordered table-striped">
-        <thead>
-        <tr>
-          <th>Identifiant</th>
-          <th>Nom d'utilisateur</th>
-          <th>E-mail</th>
-          <th>Role</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-            @foreach ($data as $key => $user)
-  <tr>
-    <td>{{ ++$i }}</td>
-    <td>{{ $user->name }}</td>
-    <td>{{ $user->email }}</td>
-    <td>
-      @if(!empty($user->getRoleNames()))
-        @foreach($user->getRoleNames() as $v)
-           <label class="badge badge-success">{{ $v }}</label>
-        @endforeach
-      @endif
-    </td>
-    <td>
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Logs</a>
-       <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Modifier</a>
-        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-user'] ) !!}
-        {!! Form::close() !!}
-    </td>
-  </tr>
- @endforeach
-        </tbody>
-        <tfoot>
-        <tr>
-            <th>Identifiant</th>
-            <th>Nom d'utilisateur</th>
-            <th>E-mail</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-        </tfoot>
-      </table>
-    </div>
-    <!-- /.card-body -->
-  </div>
 
+<div style="margin-top:-0.5cm;">
+{!! Form::open(array('route' => 'taches.store','method'=>'POST')) !!}
+</div>
+<section class="content">
+      <div class=">
+        <div class="col-md-6">
+                        
+            <div class="card-body">
+              <div class="form-group">
+                <label for="inputName">Intitulé</label>
+                <input type="text" id="inputName" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="inputDescription">Description</label>
+                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="inputStatus">Statut</label>
+                <select id="inputStatus" class="form-control custom-select">
+                  <option selected disabled>Sélectionnez-en un</option>
+                  <option>Valide</option>
+                  <option>En attente</option>
+                  <option>Invalide</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="inputProjectLeader">Encadrent</label>
+                <input type="text" id="inputProjectLeader" class="form-control">
+              </div>
+            </div>
+            <!-- /.card-body -->
+          <!-- /.card -->
+       
+        <div class="card-footer">
+      <button type="submit" class="btn btn-primary" style="margin-top: -0.5cm">Créer</button>
+    </div>
+    </div>
+    </form>
+  </div>
 @endsection
 @section('scripts')
 <script>
