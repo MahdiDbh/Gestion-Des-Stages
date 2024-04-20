@@ -125,6 +125,49 @@
                             </ul>
                             @endcan
 
+                            @can('taches-list')
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item">
+                                <a href="{{route('taches.index')}}" class="nav-link active">
+                                <i class="fa-solid fas fa-file"></i>
+                                <p>
+                                      Taches
+                                    <i class=""></i>
+                                </p>
+                                </a>
+                            </li>
+                            </ul>
+                            @endcan
+
+                            @can('evaluation-list')
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item">
+                                <a href="{{route('evaluation.index')}}" class="nav-link active">
+                                <i class="fa-solid fas fa-file"></i>
+                                <p>
+                                      Evaluation
+                                    <i class=""></i>
+                                </p>
+                                </a>
+                            </li>
+                            </ul>
+                            @endcan
+ 
+                            @can('fichier-list')
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item">
+                                <a href="{{route('fichier.index')}}" class="nav-link active">
+                                <i class="fa-duotone fa-file"></i>
+                                <p>
+                                      Fichiers et Document
+                                    <i class=""></i>
+                                </p>
+                                </a>
+                            </li>
+                            </ul>
+                            @endcan
+
+
                 </nav>
                 <!-- /.sidebar-menu -->
         </div>

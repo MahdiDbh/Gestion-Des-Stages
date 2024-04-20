@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Stage;
-use App\Models\Sujet;
+use CreateStageTable;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Hash;
@@ -43,9 +43,8 @@ class StageController extends Controller
      */
     public function create()
     {
-        $stagiaire = Stagiaire::pluck('name','name')->all(); 
-        $encadrant = Encadrent::pluck('name','name')->all();
-        return view('stage.create',compact('roles','stagiaire','encadrant'));
+      
+        return view('stage.create',compact('stagiaire','encadrent'));
     }
 
     /**

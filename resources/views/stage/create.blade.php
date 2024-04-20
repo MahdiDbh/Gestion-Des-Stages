@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Gestion des srages
+    Gestion des stages
 @endsection
 
 @section('css')
@@ -34,6 +34,11 @@ Créer stage
   </ul>
 </div>
 @endif
+
+
+
+
+
 
 <div style="margin-top:-0.5cm;">
 {!! Form::open(array('route' => 'stage.store','method'=>'POST')) !!}

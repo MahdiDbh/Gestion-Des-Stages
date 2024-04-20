@@ -2,20 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
+use App\Models\Fichier;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Models\ActivityLog;
-use App\Models\Sujet;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Role;
-use Hash;
-use Illuminate\Support\Arr;
-use spatie\Permession\Models\Permession;
 
-
-class SujetController extends Controller
+class FichierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,16 +14,15 @@ class SujetController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:sujet-list|sujet-create|sujet-edit|sujet-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:sujet-create', ['only' => ['create','store']]);
-         $this->middleware('permission:sujet-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:sujet-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:fichier-list|fichier-create|fichier-edit|fichier-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:fichier-create', ['only' => ['create','store']]);
+         $this->middleware('permission:fichier-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:fichier-delete', ['only' => ['destroy']]);
     }
-  
+    
     public function index()
     {
-
-        return view('sujet.index');
+        //
     }
 
     /**
@@ -43,9 +32,7 @@ class SujetController extends Controller
      */
     public function create()
     {
-        
-        
-        return view('sujet.create');
+        //
     }
 
     /**
@@ -62,10 +49,10 @@ class SujetController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Fichier  $fichier
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Fichier $fichier)
     {
         //
     }
@@ -73,10 +60,10 @@ class SujetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Fichier  $fichier
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Fichier $fichier)
     {
         //
     }
@@ -85,10 +72,10 @@ class SujetController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Fichier  $fichier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Fichier $fichier)
     {
         //
     }
@@ -96,10 +83,10 @@ class SujetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Fichier  $fichier
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Fichier $fichier)
     {
         //
     }
