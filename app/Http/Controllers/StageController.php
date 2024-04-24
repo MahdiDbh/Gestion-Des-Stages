@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Stage;
+use Models\Models\User;
 use CreateStageTable;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -30,8 +31,11 @@ class StageController extends Controller
          $this->middleware('permission:stage-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:stage-delete', ['only' => ['destroy']]);
     }
-    public function index()
+    public function index(Request $request)
     {
+        $data = Stage::orderBy('id')->paginate(5);
+        return view('Stage.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
 
         return view('stage.index');
     }
@@ -41,10 +45,12 @@ class StageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( )
     {
-      
-        return view('stage.create',compact('stagiaire','encadrent'));
+        $encadrant = stage::pluck('id_encadrant')->all();
+        $stagiaire = Stage::pluck('id_encadrant')->all();
+        return view('stage.create',compact('stagiaire','encadrant'));
+        
     }
 
     /**

@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fichier extends Model
 {
+    protected $table = 'fichier';
     use HasFactory;
 }

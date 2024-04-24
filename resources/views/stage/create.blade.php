@@ -36,10 +36,6 @@ Créer stage
 @endif
 
 
-
-
-
-
 <div style="margin-top:-0.5cm;">
 {!! Form::open(array('route' => 'stage.store','method'=>'POST')) !!}
     <div class="card-body">
@@ -49,21 +45,7 @@ Créer stage
             {!! Form::text('Intitulé', null, array('placeholder' => 'Intitulé','class' => 'form-control')) !!}
        </div>
 
-       <div class="form-group">
-        <label for="Encadrant">Encadrant</label>
-            {!! Form::text('Encadrant', null, array('placeholder' => 'Encadrant','class' => 'form-control')) !!}
-       </div>
-
-       <div class="form-group">
-        <label for="Stagiaire">Stagiaire</label>
-            {!! Form::text('Stagiaire', null, array('placeholder' => 'Stagiaire','class' => 'form-control')) !!}
-       </div>
-
-       <div class="form-group">
-            <strong>Statut</strong>
-            <div class="form-group">
-            <strong>Role</strong>   
-        </div>
+       
 
         <div class="form-group">
             <strong>Encadrant</strong>
@@ -78,12 +60,14 @@ Créer stage
               ,[], array('class' => 'form-control','multiple')) !!}
       
         </div>
-        
+
         <div class="form-group">
-            <strong>Role</strong>
-            {!! Form::select('roles[]', $roles
+            <strong>Statut</strong>
+            {!! Form::select('stagiaire[]', $stagiaire
               ,[], array('class' => 'form-control','multiple')) !!}
       
+        </div>
+             
         </div>
          
       </div>

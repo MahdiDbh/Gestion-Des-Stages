@@ -30,8 +30,11 @@ class SujetController extends Controller
          $this->middleware('permission:sujet-delete', ['only' => ['destroy']]);
     }
   
-    public function index()
+    public function index(Request $request)
     {
+        $data = Sujet::orderBy('id')->paginate(5);
+        return view('Sujet.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
 
         return view('sujet.index');
     }

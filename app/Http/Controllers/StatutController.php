@@ -2,28 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evaluation;
+use App\Models\Statut;
 use Illuminate\Http\Request;
 
-class EvaluationController extends Controller
+class StatutController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    function __construct()
-    {
-         $this->middleware('permission:evaluation-list|evaluation-create|evaluation-edit|evaluation-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:evaluation-create', ['only' => ['create','store']]);
-         $this->middleware('permission:evaluation-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:evaluation-delete', ['only' => ['destroy']]);
-    }
-
     public function index()
     {
-       return view('evaluation.index');
+        //
     }
 
     /**
@@ -33,7 +24,7 @@ class EvaluationController extends Controller
      */
     public function create()
     {
-     return view('evaluation.create');
+        //
     }
 
     /**
@@ -50,10 +41,10 @@ class EvaluationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Evaluation  $evaluation
+     * @param  \App\Models\Statut  $statut
      * @return \Illuminate\Http\Response
      */
-    public function show(Evaluation $evaluation)
+    public function show(Statut $statut)
     {
         //
     }
@@ -61,10 +52,10 @@ class EvaluationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Evaluation  $evaluation
+     * @param  \App\Models\Statut  $statut
      * @return \Illuminate\Http\Response
      */
-    public function edit(Evaluation $evaluation)
+    public function edit(Statut $statut)
     {
         //
     }
@@ -73,10 +64,10 @@ class EvaluationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Evaluation  $evaluation
+     * @param  \App\Models\Statut  $statut
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evaluation $evaluation)
+    public function update(Request $request, Statut $statut)
     {
         //
     }
@@ -84,10 +75,10 @@ class EvaluationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Evaluation  $evaluation
+     * @param  \App\Models\Statut  $statut
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Evaluation $evaluation)
+    public function destroy(Statut $statut)
     {
         //
     }

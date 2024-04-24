@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Taches extends Model
 {
+    protected $table ='tache';
     use HasFactory;
 }
