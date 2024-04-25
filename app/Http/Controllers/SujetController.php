@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Sujet;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Hash;
@@ -32,11 +33,13 @@ class SujetController extends Controller
   
     public function index(Request $request)
     {
-        $data = Sujet::orderBy('id')->paginate(5);
+        $data = Sujet::select()->get();
+        // $encadrant = User::where('id', '=', $data[1]->id_encadrant)->get();
         return view('Sujet.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
 
-        return view('sujet.index');
+        
+
     }
 
     /**
@@ -47,8 +50,8 @@ class SujetController extends Controller
     public function create()
     {
         
-        
-        return view('sujet.create');
+        $encadrant = User::where('type_user' ,'=' , 'EN')->get();
+        return view('sujet.create', compact('encadrant'));
     }
 
     /**
@@ -59,7 +62,19 @@ class SujetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'intitule' => 'required',
+            'encadrant' => 'required',
+            'description' => 'required',
+        ]);
+         Sujet::create([
+            'intitule' => $request->intitule,
+            'id_encadrant' => $request->encadrant,
+            'description_sujet' => $request->description,
+            'valide' => 0,
+        ]);
+
+        return view('sujet.index');
     }
 
     /**
@@ -70,7 +85,8 @@ class SujetController extends Controller
      */
     public function show($id)
     {
-        //
+        $sujet=Sujet::all();
+        return view('sujet.index', compact('sujet'));
     }
 
     /**
@@ -81,7 +97,9 @@ class SujetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sujet = Sujet::find($id);
+        $encadrant = User::where('type_user' ,'=' , 'EN')->get();
+        return view('sujet.edit', compact('sujet', 'encadrant'));
     }
 
     /**
@@ -93,7 +111,22 @@ class SujetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // dd($request);
+        $id = $request->id;
+        $this->validate($request, [
+            'intitule' => 'required',
+            'encadrant' => 'required',
+            'description_sujet' => 'required',
+        ]);
+        $data = Sujet::select()->get();
+         $input = $request->all();
+         $sjt = Sujet::where('id', '=', $id)->first();
+        $sjt->intitule = $request->intitule;
+        $sjt->id_encadrant = $request->encadrant;
+        $sjt->description_sujet = $request->description_sujet;
+        $sjt->save();
+        return view('sujet.index', compact('data'));
     }
 
     /**
@@ -104,6 +137,8 @@ class SujetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Sujet::find($id)->delete();
+        $data = Sujet::select()->get();
+        return view('sujet.index', compact('data'));
     }
 }

@@ -43,7 +43,7 @@ Faire une evaluation
                 <input type="text" id="inputName" class="form-control" placeholder="Enter le nome de stagiaire">
                 </div>
 
-                <label for="inputName">Stagiaire</label>
+                <label for="inputName">Note</label>
                 <input type="text" id="inputName" class="form-control" placeholder="Enter la note sur 20">
                 
                 

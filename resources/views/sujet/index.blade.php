@@ -45,28 +45,25 @@ Gestion Sujet
             </tr>
             </thead>
                 <tbody>
-                    {{-- @foreach($sujet as $x) --}}
+                   @foreach($data as $x) 
                     <tr>
 
-                        <td></td>
-                        <td></td>
-                        <td> </td>
+                        <td> {{$x->intitule}} </td>
+                        <td>{{$x->description_sujet}}</td>
+                        <td>{{$x->id_encadrant}}</td>
+                        <td>{{$x->valide}}</td>
                         <td>
 
 
-                        </td>
-                        <td>
-
-
-                            @can('sujet-edit')  <a class="btn btn-primary" href="{{ route('sujet.edit',1 ) }}">Modifier</a> @endcan
-                            @can('sujet-delete')     {!! Form::open(['method' => 'DELETE','route' => ['sujet.destroy', 1],'style'=>'display:inline']) !!}
+                            @can('sujet-edit')  <a class="btn btn-primary" href="{{ route('sujet.edit',$x->id ) }}">Modifier</a> @endcan
+                            @can('sujet-delete')     {!! Form::open(['method' => 'DELETE','route' => ['sujet.destroy', $x->id],'style'=>'display:inline']) !!}
                                      {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-sujet'] ) !!} @endcan
                                  {!! Form::close() !!}
 
                         </td>
 
                     </tr>
-                     {{-- @endforeach --}}
+                    @endforeach 
                 </tbody>
     </table>
 </div>

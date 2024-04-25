@@ -7,13 +7,9 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Stage;
-use Models\Models\User;
-use CreateStageTable;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Role;
-use Hash;
-use Illuminate\Support\Arr;
-use Spatie\Permission\Models\Permission;
+use App\Models\Sujet;
+use App\Models\User;
+
 
 
 class StageController extends Controller
@@ -47,9 +43,14 @@ class StageController extends Controller
      */
     public function create( )
     {
-        $encadrant = stage::pluck('id_encadrant')->all();
-        $stagiaire = Stage::pluck('id_encadrant')->all();
-        return view('stage.create',compact('stagiaire','encadrant'));
+        
+        $encadrant = User::where('type_user' ,'=' , 'EN')->get();
+        // dd($encadrant);
+        $stagiaire = User::where('type_user' ,'=' , 'ST')->get();
+        
+        $sujet = Sujet::where('valide', '=', 0)->get();
+
+        return view('stage.create',compact('stagiaire','encadrant' ,'sujet'));
         
     }
 
@@ -61,7 +62,40 @@ class StageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //   dd($request);
+        $data = Stage::orderBy('id')->paginate(5);
+        $this->validate($request, [
+            // 'intitule' => '',
+            'encadrant' => 'required',
+            'stagiaire1' => 'required',
+        ]);
+        // $input = $request->all();
+        // dd($input);
+        $stage = Stage::create([
+            'id_encadrant' => $request->encadrant,
+            'id_sujet' => $request->intitule,
+            'statut' => 1,
+
+        ]);
+        $user1 = User::where('id', '=', $request->stagiaire1)->first();
+        // dd($user1);
+        $user2 = User::where('id', '=', $request->stagiaire2)->first();
+        // dd($user1);
+        $user1->id_encadrant = $request->encadrant;
+        $user1->save();
+        if($user2 !== null){
+            $user2->id_encadrant = $request->encadrant;
+            $user2->save();
+        }
+        $sujet = Sujet::where('id', '=', $request->intitule)->first();
+        // dd($sujet);
+        $sujet->valide = 1;
+        $sujet->save();
+        
+       return view('stage.index', compact('data'));
+        
+
     }
 
     /**
@@ -72,7 +106,13 @@ class StageController extends Controller
      */
     public function show($id)
     {
-        //
+        $log=DB::table('activity_log')->select('description','created_at')->get();
+        $user = User::find($id);
+        // activity()
+        // ->causedBy(auth()->user())
+        // ->log('Consulter l\'historique d\'un utilisateur ');
+        return view('users.show',compact('user','log'));
+
     }
 
     /**

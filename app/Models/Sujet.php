@@ -9,4 +9,11 @@ class Sujet extends Model
 {
  protected $table ='sujet';
     use HasFactory;
+    // protected $guareded = [];
+    protected $fillable = [
+        'id_encadrant',
+        'intitule',
+        'description_sujet',
+        'valide',
+    ];
 }

@@ -9,4 +9,11 @@ class stage extends Model
 {
     protected $table = 'stage';
     use HasFactory;
+    // protected $guarded = ['id_encadrant'];
+    protected $fillable = [
+        'id_encadrant',
+        'id_sujet',
+        'statut',
+    ];
+
 }

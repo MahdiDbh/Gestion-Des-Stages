@@ -27,7 +27,7 @@ Gestion d'utilisateurs
 
 
 <div style="margin-top:-0.5cm;">
-{!! Form::open(array('route' => 'taches.store','method'=>'POST')) !!}
+{!! Form::open(array('route' => 'sujet.store','method'=>'POST')) !!}
 </div>
 <section class="content">
       <div class=">
@@ -36,26 +36,23 @@ Gestion d'utilisateurs
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">Intitulé</label>
-                <input type="text" id="inputName" class="form-control">
+                <input type="text" name="intitule" id="inputName" class="form-control">
               </div>
+              <div class="form-group">
+            <strong>Encadrant</strong>
+            <select name="encadrant" id="enc" class="form-control">
+              @foreach($encadrant as $en)
+              <option value='{{ $en->id }}'> {{$en->name}} </option>
+              @endforeach
+            </select>
+        </div>
               <div class="form-group">
                 <label for="inputDescription">Description</label>
-                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
-              </div>
-              <div class="form-group">
-                <label for="inputStatus">Statut</label>
-                <select id="inputStatus" class="form-control custom-select">
-                  <option selected disabled>Sélectionnez-en un</option>
-                  <option>Valide</option>
-                  <option>En attente</option>
-                  <option>Invalide</option>
-                </select>
+                <textarea name="description" id="inputDescription" class="form-control" rows="4"></textarea>
               </div>
               
-              <div class="form-group">
-                <label for="inputProjectLeader">Encadrent</label>
-                <input type="text" id="inputProjectLeader" class="form-control">
-              </div>
+              
+              
             </div>
             <!-- /.card-body -->
           <!-- /.card -->

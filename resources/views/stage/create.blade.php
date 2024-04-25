@@ -42,31 +42,45 @@ Créer stage
         
       <div class="form-group">
         <label for="intitulé">Intitulé</label>
-            {!! Form::text('Intitulé', null, array('placeholder' => 'Intitulé','class' => 'form-control')) !!}
+        <select name="intitule" id="st" class="form-control">
+              @foreach($sujet as $sj)
+              <option value="{{ $sj->id }}" required> {{$sj->intitule}} </option>
+              @endforeach
+            </select>
        </div>
 
        
 
         <div class="form-group">
             <strong>Encadrant</strong>
-            {!! Form::select('encadrant[]', $encadrant
-              ,[], array('class' => 'form-control','multiple')) !!}
+            <select name="encadrant" id="enc" class="form-control">
+              @foreach($encadrant as $en)
+              <option value='{{ $en->id }}'> {{$en->name}} </option>
+              @endforeach
+            </select>
       
         </div>
 
         <div class="form-group">
-            <strong>Stagiaire</strong>
-            {!! Form::select('stagiaire[]', $stagiaire
-              ,[], array('class' => 'form-control','multiple')) !!}
-      
+            <strong>Stagiaire 1</strong>
+            <select name="stagiaire1" id="st" class="form-control">
+              @foreach($stagiaire as $st)
+              <option value='{{ $st->id }}'> {{$st->name}} </option>
+              @endforeach
+            </select>
         </div>
 
         <div class="form-group">
-            <strong>Statut</strong>
-            {!! Form::select('stagiaire[]', $stagiaire
-              ,[], array('class' => 'form-control','multiple')) !!}
-      
+            <strong>Stagiaire 2</strong>
+            <select name="stagiaire2" id="st" class="form-control">
+            <option value=''> Aucun</option>
+              @foreach($stagiaire as $st)
+              <option value='{{ $st->id }}'> {{$st->name}} </option>
+              @endforeach
+            </select>
         </div>
+
+        
              
         </div>
          
