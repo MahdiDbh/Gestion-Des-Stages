@@ -32,7 +32,7 @@ Gestion d'utilisateurs
 <section class="content">
       <div class=">
         <div class="col-md-6">
-                        
+                          
             <div class="card-body">
               <div class="form-group">
                 <label for="inputName">Intitulé</label>

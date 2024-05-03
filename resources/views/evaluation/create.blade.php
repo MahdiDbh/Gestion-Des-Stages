@@ -38,17 +38,31 @@ Faire une evaluation
 <div style="margin-top:-0.5cm;">
 {!! Form::open(array('route' => 'evaluation.store','method'=>'POST')) !!}
     <div class="card-body">
+    
     <div class="form-group">
-                <label for="inputName">Stagiaire</label>
-                <input type="text" id="inputName" class="form-control" placeholder="Enter le nome de stagiaire">
-                </div>
+            <strong>Stagiaire</strong>
+            <select name="stagiaire" id="st" class="form-control">
+              @foreach($stagiaire as $st)
+              <option value='{{ $st->id }}'> {{$st->name}} </option>
+              @endforeach
+            </select>
 
+            <strong>Type d'évaluation</strong>
+            <select name="Type_evaluation"  class="form-control">
+              @foreach($stagiaire as $type)
+              <option value='{{ $type->id }}'> {{$st->Type_evaluation}} </option>
+              @endforeach
+              <option value="periodique">Périodique</option>
+              <option value="finale">Finale</option>
+            </select>
+
+        </div>
                 <label for="inputName">Note</label>
-                <input type="text" id="inputName" class="form-control" placeholder="Enter la note sur 20">
+                <input type="text"  name="note" id="inputName" class="form-control" placeholder="Enter la note sur 20">
                 
                 
-              <label>Intitulé</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+              <label>Remarque</label>
+                        <textarea class="form-control" name="remarque" rows="3" placeholder="Enter ..."></textarea>
                       </div>
 
               <div class="form-group">

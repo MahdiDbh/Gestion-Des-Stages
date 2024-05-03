@@ -22,7 +22,7 @@ Créer tache
 @section('content')
 
 <div class="" style="margin-left: 1cm;">
-            <a class="btn btn-primary" href="{{ route('stage.index') }}"> Retour</a>
+            <a class="btn btn-primary" href="{{ route('taches.index') }}"> Retour</a>
 </div>
 @if (count($errors) > 0)
 <div class="alert alert-danger">
@@ -37,13 +37,14 @@ Créer tache
 
 <div style="margin-top:-0.5cm;">
 {!! Form::open(array('route' => 'taches.store','method'=>'POST')) !!}
-    <div class="card-body">
+<div class="card-body">
     <div class="form-group">
-                        <label>Intitulé</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                      </div>
+    
+                <label for="inputDescription">Intitulé</label>
+                <textarea name="intitule" id="inputDescription" class="form-control" rows="4" placeholder="Enter ..."></textarea>
+              </div>
      
-      </div>
+    
 
     <!-- /.card-body -->
 

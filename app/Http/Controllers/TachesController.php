@@ -21,9 +21,12 @@ class TachesController extends Controller
          $this->middleware('permission:taches-delete', ['only' => ['destroy']]);
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        return view('taches.index');
+        $data = Taches::select()->get();
+        // $encadrant = User::where('id', '=', $data[1]->id_encadrant)->get();
+        return view('taches.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -33,7 +36,8 @@ class TachesController extends Controller
      */
     public function create()
     {
-        return view('taches.create');
+        $taches = Taches::where('statut', '=', 0)->get();
+       return view('taches.create');
     }
 
     /**
@@ -44,7 +48,19 @@ class TachesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'intitule' => 'required',
+        ]);
+        Taches::create([
+            'intitule' => $request->intitule,
+            'id_stage' => $request->id_stage,  
+            'statut' => 1,     
+            
+        ]);
+         //dd($request);
+        return view('taches.index',[
+            "data"=>Taches::all() 
+        ]);
     }
 
     /**
@@ -53,9 +69,10 @@ class TachesController extends Controller
      * @param  \App\Models\Taches  $taches
      * @return \Illuminate\Http\Response
      */
-    public function show(Taches $taches)
+    public function show($id)
     {
-        //
+        $taches=Taches:: all();
+        return view('taches.index',compact('taches'));
     }
 
     /**
@@ -64,9 +81,17 @@ class TachesController extends Controller
      * @param  \App\Models\Taches  $taches
      * @return \Illuminate\Http\Response
      */
-    public function edit(Taches $taches)
+    public function edit($id)
     {
-        //
+        $taches = Taches::find($id);
+        dd($taches);
+        if ($taches === null) {
+            // Redirigez vers une page d'erreur ou retournez une réponse d'erreur
+            return redirect('error_page')->with('error', 'Tâche non trouvée');
+        }
+    
+        return view('taches.edit', ['taches' => $taches]);
+     
     }
 
     /**
@@ -76,9 +101,20 @@ class TachesController extends Controller
      * @param  \App\Models\Taches  $taches
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Taches $taches)
+    public function update(Request $request, $id)
     {
-        //
+        $id = $request->id;
+        $this->validate($request, [
+            'intitule' => 'required',
+        ]);
+        $data = Taches::select()->get();
+         $input = $request->all();
+         $taches = Taches::where('id', '=', $id)->first();
+         $taches = Taches::select()->get();
+        $taches->intitule = $request->intitule;
+        $taches->save();
+        
+        return view('taches.index', compact('data'));
     }
 
     /**
@@ -87,8 +123,10 @@ class TachesController extends Controller
      * @param  \App\Models\Taches  $taches
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Taches $taches)
+    public function destroy($id)
     {
-        //
+        Taches::find($id)->delete();
+        $data = Taches::select()->get();
+        return view('taches.index', compact('data'));
     }
 }

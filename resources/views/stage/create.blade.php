@@ -62,7 +62,7 @@ Créer stage
         </div>
 
         <div class="form-group">
-            <strong>Stagiaire 1</strong>
+            <strong>Stagiaire</strong>
             <select name="stagiaire1" id="st" class="form-control">
               @foreach($stagiaire as $st)
               <option value='{{ $st->id }}'> {{$st->name}} </option>

@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Taches extends Model
 {
     protected $table ='tache';
-    use HasFactory;
+    
+    protected $fillable = [
+        'intitule',
+        'id_stage',
+          'statut',
+    ];  
+          use HasFactory;
 }

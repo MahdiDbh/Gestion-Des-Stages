@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Statut extends Model
 {
     use HasFactory;
+    protected $table ='statut';
+    protected $fillable = [
+        'id',
+        'description',
+    ];
 }
+

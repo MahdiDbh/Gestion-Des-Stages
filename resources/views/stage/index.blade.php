@@ -36,7 +36,8 @@ Gestion Stage
 
                 <th>Intitulé</th>
                 <th>Encadrant</th>
-                <th>Stagiaire</th>
+                <th>Stagiaire1</th>
+                <th>Stagiaire2</th>
                 <th>Statut</th>
                 <th>Action</th>
 
@@ -45,28 +46,26 @@ Gestion Stage
             </tr>
             </thead>
                 <tbody>
-                    {{-- @foreach($stage as $x) --}}
+                     @foreach($data as $x) 
                     <tr>
 
-                        <td></td>
-                        <td></td>
-                        <td> </td>
-                        <td>
-
-
-                        </td>
+                        <td>{{$x->intitule}}</td>
+                        <td>{{$x->encadrant}}</td>
+                        <td>{{$x->stagiaire1}}</td>
+                        <td>{{$x->stagiaire2}}</td>
+                        <td>{{$x->statut}}</td>
                         <td>
 
 
                             @can('stage-edit')  <a class="btn btn-primary" href="{{ route('stage.edit',1) }}">Modifier</a> @endcan
-                            @can('stage-delete')     {!! Form::open(['method' => 'DELETE','route' => ['stage.destroy', 1],'style'=>'display:inline']) !!}
+                            @can('stage-delete')     {!! Form::open(['method' => 'DELETE','route' => ['stage.destroy', $x->id],'style'=>'display:inline']) !!}
                                      {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-stage'] ) !!} @endcan
                                  {!! Form::close() !!}
 
                         </td>
 
                     </tr>
-                     {{-- @endforeach --}}
+                      @endforeach 
                 </tbody>
     </table>
 </div>

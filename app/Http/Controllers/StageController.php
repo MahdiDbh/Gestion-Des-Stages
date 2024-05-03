@@ -146,6 +146,8 @@ class StageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Stage::find($id)->delete();
+        $data = Stage::select()->get();
+        return view('stage.index', compact('data'));
     }
 }

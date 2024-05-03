@@ -45,25 +45,22 @@ Gestion Taches
             </tr>
             </thead>
                 <tbody>
-                    {{-- @foreach($taches as $x) --}}
-                    <tr>
-
-                        
-                        
-                        <td> </td>
-                        <td>   </td>
+                 @foreach($data as $x) 
+                    <tr>  
+                        <td> {{$x->intitule}} </td>
+                        <td>  {{$x->statut}}  </td>
                         <td>
 
                             @can('taches-edit')  <a class="btn btn-secondary" href="{{ route('taches.edit',1) }}">Valider</a> @endcan
                             @can('taches-edit')  <a class="btn btn-primary" href="{{ route('taches.edit',1) }}">Modifier</a> @endcan
-                            @can('taches-delete')     {!! Form::open(['method' => 'DELETE','route' => ['taches.destroy', 1],'style'=>'display:inline']) !!}
+                            @can('taches-delete')     {!! Form::open(['method' => 'DELETE','route' => ['taches.destroy', $x->id],'style'=>'display:inline']) !!}
                                      {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-taches'] ) !!} @endcan
                                  {!! Form::close() !!}
 
                         </td>
 
                     </tr>
-                     {{-- @endforeach --}}
+                @endforeach 
                 </tbody>
     </table>
 </div>

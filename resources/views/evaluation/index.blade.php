@@ -34,17 +34,19 @@ Gestion Evaluation
             <thead>
             <tr>
                 <th>Stagiaire</th>
+                <th>Type d'évaluation</th>
                 <th>Note</th>
-                <th>remarque</th>
+                <th>Remarque</th>
                 <th>Action</th>
             </tr>
             </thead>
                 <tbody>
-                    {{-- @foreach($evaluation as $x) --}}
+                     @foreach($data as $x) 
                     <tr> 
-                        <td> </td>
-                        <td>   </td>
-                        <td>   </td>
+                        <td>{{$x->stagiaire}}</td>
+                        <td> {{$x->type_evaluation}}  </td>
+                        <td>   {{$x->Note}}</td>
+                        <td>   {{$x->remarque}}</td>
                         <td> 
                             @can('evaluation-edit')  <a class="btn btn-primary" href="{{ route('evaluation.edit',1) }}">Modifier</a> @endcan
                             @can('evaluation-delete')     {!! Form::open(['method' => 'DELETE','route' => ['evaluation.destroy', 1],'style'=>'display:inline']) !!}
@@ -53,7 +55,7 @@ Gestion Evaluation
 
                         </td>
                     </tr>
-                     {{-- @endforeach --}}
+                     @endforeach 
                 </tbody>
     </table>
 </div>

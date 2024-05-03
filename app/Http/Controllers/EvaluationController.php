@@ -1,9 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\ActivityLog;
+
 
 use App\Models\Evaluation;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class EvaluationController extends Controller
 {
@@ -21,9 +26,11 @@ class EvaluationController extends Controller
          $this->middleware('permission:evaluation-delete', ['only' => ['destroy']]);
     }
 
-    public function index()
-    {
-       return view('evaluation.index');
+    public function index(Request $request)
+    { 
+        $data = Evaluation::orderBy('id')->paginate(5);
+        return view('evaluation.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -33,7 +40,8 @@ class EvaluationController extends Controller
      */
     public function create()
     {
-     return view('evaluation.create');
+        $stagiaire = User::where('type_user' ,'=' , 'ST')->get();
+     return view('evaluation.create',compact('stagiaire'));
     }
 
     /**
@@ -44,7 +52,19 @@ class EvaluationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'note'=>'required|numeric|between :0,20',
+            'type_evaluation'=>'',
+            'remarque' => 'required',
+            
+        ]);
+         Evaluation::create([
+            'note' => $request->intitule,
+            'type_evaluation' => $request->type_evaluation,
+            'id_stage'=>$request->stagiaire,
+        ]);
+              //dd($request);
+             return view('evaluation.index');
     }
 
     /**
@@ -55,7 +75,8 @@ class EvaluationController extends Controller
      */
     public function show(Evaluation $evaluation)
     {
-        //
+        $evaluation=evaluation::all();
+        return view('sujet.index', compact('sujet'));
     }
 
     /**
@@ -64,9 +85,11 @@ class EvaluationController extends Controller
      * @param  \App\Models\Evaluation  $evaluation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Evaluation $evaluation)
+    public function edit($id)
     {
-        //
+        $evaluation=Evaluation::all();
+        return view('evaluation.index', compact('evaluation'));
+   
     }
 
     /**
@@ -87,8 +110,10 @@ class EvaluationController extends Controller
      * @param  \App\Models\Evaluation  $evaluation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Evaluation $evaluation)
+    public function destroy($id)
     {
-        //
+        Evaluation::find($id)->delete();
+        $data = Evaluation::select()->get();
+        return view('evaluation.index', compact('data'));
     }
 }
