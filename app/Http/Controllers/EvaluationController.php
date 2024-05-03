@@ -59,12 +59,15 @@ class EvaluationController extends Controller
             
         ]);
          Evaluation::create([
-            'note' => $request->intitule,
+            'id_stage'=>$request->id_stage,
             'type_evaluation' => $request->type_evaluation,
-            'id_stage'=>$request->stagiaire,
+            'note' => $request->note,    
+            'remarque' =>$request->remarque,
         ]);
               //dd($request);
-             return view('evaluation.index');
+             return view('evaluation.index',[
+                "data"=>Evaluation::all() 
+            ]);
     }
 
     /**

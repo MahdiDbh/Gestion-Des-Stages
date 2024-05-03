@@ -36,19 +36,23 @@ Créer un Fichier
 @endif
 
 <div style="margin-top:-0.5cm;">
-{!! Form::open(array('route' => 'taches.store','method'=>'POST')) !!}
+{!! Form::open(array('route' => 'fichier.store','method'=>'POST')) !!}
     <div class="card-body">
+
     <div class="form-group">
-                <label for="inputName">Titre</label>
-                <input type="text" id="inputName" class="form-control" placeholder="Enter le titre">
-              </div>
+        <label for="intitulé">Intitulé</label>
+        <select name="s" id="st" class="form-control">
+              @foreach($sujet as $sj)
+              <option value="{{ $sj->id }}" required> {{$sj->intitule}} </option>
+              @endforeach
+            </select>
 
               <div class="form-group">
-                    <label for="exampleInputFile">Entrée de fichier</label>
+                    <label for="exampleInputFile">Entrée le Fichier de Memoire</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choisir un fichier</label>
+                        <input type="file" name ="path_memoire" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choisir un Memoire Format PDF</label>
                       </div>
                       <div class="input-group-append">
                         <span class="input-group-text">Upload</span>
@@ -56,6 +60,19 @@ Créer un Fichier
                     </div>
                   </div>
      
+
+                  <div class="form-group">
+                    <label for="exampleInputFile">Entrée le code</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name ="path_code" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choisir un fichier format zip</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                  </div>
       </div>
 
     <!-- /.card-body -->

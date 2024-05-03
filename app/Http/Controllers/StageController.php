@@ -48,7 +48,7 @@ class StageController extends Controller
         // dd($encadrant);
         $stagiaire = User::where('type_user' ,'=' , 'ST')->get();
         
-        $sujet = Sujet::where('valide', '=', 0)->get();
+        $sujet = Sujet::where('valide', '=', 1)->get();
 
         return view('stage.create',compact('stagiaire','encadrant' ,'sujet'));
         

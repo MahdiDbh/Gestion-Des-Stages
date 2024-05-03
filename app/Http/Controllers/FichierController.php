@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
+use App\Models\Sujet;
 
 use App\Models\Fichier;
 use Illuminate\Http\Request;
@@ -32,7 +34,10 @@ class FichierController extends Controller
      */
     public function create()
     {
-        return view("fichier.create");
+        
+        $sujet = Sujet::where('valide', '=', 1)->get();
+        
+        return view('fichier.create',compact('sujet'));
     }
 
     /**
@@ -43,7 +48,20 @@ class FichierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            
+            'path_memoire' => 'required|string|pdf', 
+            'path_code' => 'required|string|zip', 
+        ]);
+    
+        Fichier::create([
+            'id_stage' => $request->id_stage,
+            'path_memoire' => $request->path_memoire,
+            'path_code' => $request->path_code,
+        ]);
+        //dd($request);
+    
+        return redirect()->route('fichier.index'); // Redirige vers la liste des sujets (ajustez selon votre application)
     }
 
     /**

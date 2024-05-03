@@ -48,10 +48,7 @@ Faire une evaluation
             </select>
 
             <strong>Type d'évaluation</strong>
-            <select name="Type_evaluation"  class="form-control">
-              @foreach($stagiaire as $type)
-              <option value='{{ $type->id }}'> {{$st->Type_evaluation}} </option>
-              @endforeach
+            <select name="type_evaluation"  class="form-control">
               <option value="periodique">Périodique</option>
               <option value="finale">Finale</option>
             </select>

@@ -10,6 +10,7 @@ class Evaluation extends Model
     protected $table = 'evaluation';
     use HasFactory;
     protected $fillable = [
+        'id',
         'id_stage',
         'type_evaluation',
         'note',
