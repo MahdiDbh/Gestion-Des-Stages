@@ -33,16 +33,18 @@ Gestion Fichiers et Documents
     <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>Titre</th>
-                <th>Document</th>
+                <th>Intetilé</th>
+                <th>Le memoire</th>
+                <th>Le code</th>
                 <th>Action</th>
             </tr>
             </thead>
                 <tbody>
-                    {{-- @foreach($fichier as $x) --}}
+                     @foreach($data as $x) 
                     <tr> 
-                        <td> </td>
-                        <td>   </td>
+                        <td>{{$x->intitule}} </td>
+                        <td>  {{$x->path_memoire}} </td>
+                        <td>  {{$x->path_code}}</td>
                         <td> 
                             @can('fichier-edit')  <a class="btn btn-primary" href="{{ route('fichier.edit',1) }}">Modifier</a> @endcan
                             @can('fichier-delete')     {!! Form::open(['method' => 'DELETE','route' => ['fichier.destroy', 1],'style'=>'display:inline']) !!}
@@ -51,7 +53,7 @@ Gestion Fichiers et Documents
 
                         </td>
                     </tr>
-                     {{-- @endforeach --}}
+                      @endforeach 
                 </tbody>
     </table>
 </div>

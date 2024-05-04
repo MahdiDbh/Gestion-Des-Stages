@@ -36,7 +36,7 @@ Créer un Fichier
 @endif
 
 <div style="margin-top:-0.5cm;">
-{!! Form::open(array('route' => 'fichier.store','method'=>'POST')) !!}
+{!! Form::open(array('route' => 'fichier.store','method'=>'POST','enctype'=>'multipart/form-data')) !!}
     <div class="card-body">
 
     <div class="form-group">

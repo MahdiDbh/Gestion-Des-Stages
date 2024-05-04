@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Sujet;
-
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\ActivityLog;
 use App\Models\Fichier;
 use Illuminate\Http\Request;
 
@@ -22,10 +24,12 @@ class FichierController extends Controller
          $this->middleware('permission:fichier-delete', ['only' => ['destroy']]);
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        return view("fichier.index");
-    }
+        $data = Fichier::orderBy('id')->paginate(5);
+        return view('fichier.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +39,7 @@ class FichierController extends Controller
     public function create()
     {
         
-        $sujet = Sujet::where('valide', '=', 1)->get();
+        $sujet = Sujet::where('valide','=', 1)->get();
         
         return view('fichier.create',compact('sujet'));
     }
@@ -50,18 +54,26 @@ class FichierController extends Controller
     {
         $request->validate([
             
-            'path_memoire' => 'required|string|pdf', 
-            'path_code' => 'required|string|zip', 
+            'path_memoire' => 'required', 
+            'path_code' => 'required', 
         ]);
+
+        if($request->has('path_memoire','path_code')){
+            $file = $request->file('path_memoire');
+            $file = $request->file('path_code');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $path = 'uploads/fichier/';
+            $file->move($path, $filename);
+        }
     
         Fichier::create([
             'id_stage' => $request->id_stage,
-            'path_memoire' => $request->path_memoire,
-            'path_code' => $request->path_code,
+            'path_memoire' => $path.$filename,
+            'path_code' => $path.$filename,
         ]);
-        //dd($request);
-    
-        return redirect()->route('fichier.index'); // Redirige vers la liste des sujets (ajustez selon votre application)
+        //dd($request);   
+        return redirect()->route('fichier.index'); 
     }
 
     /**
