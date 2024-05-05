@@ -13,7 +13,17 @@ class Sujet extends Model
     protected $fillable = [
         'id_encadrant',
         'intitule',
-        'description_sujet',
+        'description_sujet',    
         'valide',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id_encadrant','id');
+    }
+
+    public function statut()
+    {
+        return $this->belongsTo(Statut::class,'valide','id');
+    }
 }

@@ -128,8 +128,8 @@
                             @can('taches-list')
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
-                                <a href="{{route('taches.index')}}" class="nav-link active">
-                                <i class="fa-solid fas fa-file"></i>
+                                <a href="{{route('taches.index')}}" class="nav-link active"> 
+                                <i class="nav-icon fa-list-check"></i> <i class="fa-solid fa-list-check"></i>
                                 <p>
                                       Taches
                                     <i class=""></i>

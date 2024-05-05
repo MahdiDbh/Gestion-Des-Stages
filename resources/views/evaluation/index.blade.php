@@ -43,7 +43,8 @@ Gestion Evaluation
                 <tbody>
                      @foreach($data as $x) 
                     <tr> 
-                        <td>{{$x->stagiaire}}</td>
+                         <td>{{$x->user()->first()->name}}</td> 
+                        <!-- <td>{{$x->id_etudiant}}</td> -->
                         <td> {{$x->type_evaluation}}  </td>
                         <td>   {{$x->note}}</td>
                         <td>   {{$x->remarque}}</td>

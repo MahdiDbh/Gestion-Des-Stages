@@ -15,4 +15,9 @@ class Taches extends Model
           'statut',
     ];  
           use HasFactory;
+
+          public function statut()
+    {
+        return $this->belongsTo(Statut::class,'statut','id');
+    }
 }

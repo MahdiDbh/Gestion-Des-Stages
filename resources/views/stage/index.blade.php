@@ -36,8 +36,6 @@ Gestion Stage
 
                 <th>Intitulé</th>
                 <th>Encadrant</th>
-                <th>Stagiaire1</th>
-                <th>Stagiaire2</th>
                 <th>Statut</th>
                 <th>Action</th>
 
@@ -49,11 +47,10 @@ Gestion Stage
                      @foreach($data as $x) 
                     <tr>
 
-                        <td>{{$x->intitule}}</td>
-                        <td>{{$x->encadrant}}</td>
-                        <td>{{$x->stagiaire1}}</td>
-                        <td>{{$x->stagiaire2}}</td>
-                        <td>{{$x->statut}}</td>
+                        <td>{{$x->sujet()->first()->intitule}}</td>
+                        <td>{{$x?->user()->first()->name}}</td>
+                        
+                        <td>{{$x->statut()->first()->description}}</td>
                         <td>
 
 

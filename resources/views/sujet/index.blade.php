@@ -50,8 +50,8 @@ Gestion Sujet
 
                         <td> {{$x->intitule}} </td>
                         <td>{{$x->description_sujet}}</td>
-                        <td>{{$x->id_encadrant}}</td>
-                        <td>{{$x->valide}}</td>
+                        <td>{{$x?->user()->first()->name}}</td>
+                        <td>{{$x->statut()->first()->description}}</td>
                         <td>
 
 

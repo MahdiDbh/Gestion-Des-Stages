@@ -23,13 +23,15 @@ class TachesController extends Controller
          $this->middleware('permission:taches-create', ['only' => ['create','store']]);
          $this->middleware('permission:taches-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:taches-delete', ['only' => ['destroy']]);
+         
     }
     
     public function index(Request $request)
     {
-        $data = Taches::select()->get();
-        // $encadrant = User::where('id', '=', $data[1]->id_encadrant)->get();
-        return view('taches.index',compact('data'))
+        $data = Taches::where('id_stage', '=' , null)
+        ->with('statut')
+        // ->with('user')
+        ->get();        return view('taches.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -75,8 +77,10 @@ class TachesController extends Controller
      */
     public function show($id)
     {
-        $taches=Taches:: all();
-        return view('taches.index',compact('taches'));
+        $tache = Taches::find($id);
+        $tache->statut = 2;
+        $tache->save();
+        return back();
     }
 
     /**
@@ -88,13 +92,10 @@ class TachesController extends Controller
     public function edit($id)
     {
         $taches = Taches::find($id);
-        dd($taches);
-        if ($taches === null) {
-            // Redirigez vers une page d'erreur ou retournez une réponse d'erreur
-            return redirect('error_page')->with('error', 'Tâche non trouvée');
-        }
+        //  dd($taches);
+        
     
-        return view('taches.edit', ['taches' => $taches]);
+        return view('taches.edit', compact('taches'));
      
     }
 
@@ -132,5 +133,9 @@ class TachesController extends Controller
         Taches::find($id)->delete();
         $data = Taches::select()->get();
         return view('taches.index', compact('data'));
+    }
+
+    public function valider($id){
+        
     }
 }

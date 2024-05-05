@@ -15,6 +15,15 @@ class Evaluation extends Model
         'type_evaluation',
         'note',
         'remarque',
+        'id_etudiant',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id_etudiant','id');
+    }
+
+
+        
+    
 }
 

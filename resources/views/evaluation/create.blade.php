@@ -55,7 +55,7 @@ Faire une evaluation
 
         </div>
                 <label for="inputName">Note</label>
-                <input type="text"  name="note" id="inputName" class="form-control" placeholder="Enter la note sur 20">
+                <input type="number"  name="note" id="inputName" class="form-control" placeholder="Enter la note sur 20">
                 
                 
               <label>Remarque</label>

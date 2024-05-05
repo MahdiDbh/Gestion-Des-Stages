@@ -28,7 +28,10 @@ class EvaluationController extends Controller
 
     public function index(Request $request)
     { 
-        $data = Evaluation::orderBy('id')->paginate(5);
+        $data = Evaluation::where('id_stage','!=' , null)
+        ->with('user')
+        ->get();
+
         return view('evaluation.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -52,6 +55,7 @@ class EvaluationController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $this->validate($request, [
             'note'=>'required|numeric|between :0,20',
             'type_evaluation'=>'',
@@ -59,6 +63,7 @@ class EvaluationController extends Controller
             
         ]);
          Evaluation::create([
+            'id_etudiant' => $request->stagiaire,
             'id_stage'=>$request->id_stage,
             'type_evaluation' => $request->type_evaluation,
             'note' => $request->note,    
@@ -90,7 +95,7 @@ class EvaluationController extends Controller
      */
     public function edit($id)
     {
-        $evaluation=Evaluation::all();
+           $evaluation=Evaluation::find($id);
         return view('evaluation.index', compact('evaluation'));
    
     }

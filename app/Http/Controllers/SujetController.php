@@ -34,7 +34,11 @@ class SujetController extends Controller
     public function index(Request $request)
     {
         $data = Sujet::select()->get();
-        // $encadrant = User::where('id', '=', $data[1]->id_encadrant)->get();
+        $data = Sujet::where('id_encadrant', '!=' , null)
+        ->with('user','statut')
+        
+        ->get();
+
         return view('Sujet.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
 

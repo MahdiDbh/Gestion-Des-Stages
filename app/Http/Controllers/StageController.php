@@ -29,11 +29,17 @@ class StageController extends Controller
     }
     public function index(Request $request)
     {
-        $data = Stage::orderBy('id')->paginate(5);
-        return view('Stage.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $data = Stage::where('id_sujet', '!=' , null)
+        ->with('statut', 'user','sujet')
+        // ->with('user')
+        ->get();
 
-        return view('stage.index');
+        // dd($data);
+        return view('Stage.index',compact('data'));
+
+            // ->with('i', ($request->input('page', 1) - 1) * 5);
+
+        // return view('stage.index');
     }
 
     /**

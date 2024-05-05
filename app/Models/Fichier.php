@@ -16,6 +16,9 @@ class Fichier extends Model
         'path_memoire',
         'path_code',
     ];
-
+    public function sujet()
+    {
+        return $this->belongsTo(Sujet::class,'id_sujet','id');
+    }
 
 }

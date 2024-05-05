@@ -26,7 +26,11 @@ class FichierController extends Controller
     
     public function index(Request $request)
     {
-        $data = Fichier::orderBy('id')->paginate(5);
+        $data = Fichier::where('id_sujet', '!=' , null)
+        ->with('sujet')
+        // ->with('user')
+        ->get();
+       
         return view('fichier.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     } 

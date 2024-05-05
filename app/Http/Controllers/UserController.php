@@ -55,7 +55,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
+        // dd($request->roles[0] );
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -68,6 +68,10 @@ class UserController extends Controller
 
         $user = User::create($input);
         $user->username=$request->name;
+        if($request->roles[0] == 'Stagiaire') $user->type_user = 'ST';
+        if($request->roles[0] == 'Admin') $user->type_user = 'AD';
+        if($request->roles[0] == 'Encadrant') $user->type_user = 'EN';
+        if($request->roles[0] == 'Chargé de formation') $user->type_user = 'CF';
         $user->save();
         $user->assignRole($request->input('roles'));
         activity()

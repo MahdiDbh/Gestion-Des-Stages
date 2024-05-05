@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class stage extends Model
 {
+    
     protected $table = 'stage';
     use HasFactory;
     // protected $guarded = ['id_encadrant'];
@@ -15,5 +16,20 @@ class stage extends Model
         'id_sujet',
         'statut',
     ];
+    public function statut()
+    {
+        return $this->belongsTo(Statut::class,'statut','id');
+    }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class,'id_encadrant','id');
+    }
+    public function sujet()
+    {
+        return $this->belongsTo(Sujet::class,'id_sujet','id');
+    }
+
+
+   
 }
