@@ -52,9 +52,21 @@ Gestion Stage
                         
                         <td>{{$x->statut()->first()->description}}</td>
                         <td>
-
-
-                            @can('stage-edit')  <a class="btn btn-primary" href="{{ route('stage.edit',1) }}">Modifier</a> @endcan
+                        @if($x->statut()->first()->id == 1 || $x->statut()->first()->id == 3 )
+                        @can('stage-edit')  
+                            
+                            <a class="btn btn-secondary" href="{{ route('stage.show',$x->id) }}">Valider</a>
+                            
+                         @endcan
+                        @endif
+                        @if($x->statut()->first()->id == 1 || $x->statut()->first()->id == 2)
+                            @can('stage-edit')  
+                            
+                            <a class="btn btn-secondary" href="{{ route('stage.edit',$x->id) }}">Annuler</a>
+                            
+                            @endcan
+                        @endif
+                            <!-- @can('stage-edit')  <a class="btn btn-primary" href="{{ route('stage.edit',$x->id) }}">Modifier</a> @endcan -->
                             @can('stage-delete')     {!! Form::open(['method' => 'DELETE','route' => ['stage.destroy', $x->id],'style'=>'display:inline']) !!}
                                      {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-stage'] ) !!} @endcan
                                  {!! Form::close() !!}

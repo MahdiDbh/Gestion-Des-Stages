@@ -120,8 +120,10 @@ class FichierController extends Controller
      * @param  \App\Models\Fichier  $fichier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fichier $fichier)
+    public function destroy($id)
     {
-        //
+        Fichier::find($id)->delete();
+        $data = Fichier::select()->get();
+        return view('fichier.index', compact('data'));
     }
 }

@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Models\Fichier;
+use App\Models\stage;
+use App\Models\Sujet;
+use App\Models\Taches;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -28,10 +33,13 @@ class HomeController extends Controller
     {
         $userYear=2023;
         $userMonth=8;
-        $totalNbrSms = 1000;
-        $totalNbrSmsMobilis = 2000;
-        $totalNbrSmsDjezzy = 3000;
-        $totalNbrSmsOoredoo = 4000;
-        return view('home',compact('totalNbrSms','totalNbrSmsMobilis','totalNbrSmsDjezzy','totalNbrSmsOoredoo'));
+        $totalsujet = Sujet::select()->count();
+        $totalstage = stage::select()->count();
+        $totalfichier = Fichier::select()->count();
+        $totaluser = User::select()->count();
+        // $totalNbrSmsMobilis = 2000;
+        // $totalNbrSmsDjezzy = 3000;
+        // $totalNbrSmsOoredoo = 4000;
+        return view('home',compact('totalsujet','totalstage','totalfichier','totaluser'));
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
+use App\Models\Fichier;
 use App\Models\Sujet;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -33,14 +34,13 @@ class SujetController extends Controller
   
     public function index(Request $request)
     {
-        $data = Sujet::select()->get();
+        // $data = Sujet::select()->get();
         $data = Sujet::where('id_encadrant', '!=' , null)
-        ->with('user','statut')
-        
+        ->with('user','status')
         ->get();
-
+        //  dd($data);
         return view('Sujet.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
 
         
 
@@ -75,10 +75,11 @@ class SujetController extends Controller
             'intitule' => $request->intitule,
             'id_encadrant' => $request->encadrant,
             'description_sujet' => $request->description,
-            'valide' => 0,
+            'valide' => 1,
         ]);
 
-        return view('sujet.index');
+        return redirect()->route('sujet.index');
+        // view('sujet.index');
     }
 
     /**
@@ -130,7 +131,8 @@ class SujetController extends Controller
         $sjt->id_encadrant = $request->encadrant;
         $sjt->description_sujet = $request->description_sujet;
         $sjt->save();
-        return view('sujet.index', compact('data'));
+         return redirect()->route('sujet.index');
+        // view('sujet.index', compact('data'));
     }
 
     /**
@@ -142,7 +144,8 @@ class SujetController extends Controller
     public function destroy($id)
     {
         Sujet::find($id)->delete();
-        $data = Sujet::select()->get();
-        return view('sujet.index', compact('data'));
+        Fichier::where('id_sujet', $id)->delete();
+        // $data = Sujet::select()->get();
+        return redirect()->route('sujet.index');
     }
 }

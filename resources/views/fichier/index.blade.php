@@ -48,7 +48,7 @@ Gestion Fichiers et Documents
                         <td>  <a href="{{url($x->path_code)}}">telecharger le code source </a> </td>
                         <td> 
                             @can('fichier-edit')  <a class="btn btn-primary" href="{{ route('fichier.edit',1) }}">Modifier</a> @endcan
-                            @can('fichier-delete')     {!! Form::open(['method' => 'DELETE','route' => ['fichier.destroy', 1],'style'=>'display:inline']) !!}
+                            @can('fichier-delete')     {!! Form::open(['method' => 'DELETE','route' => ['fichier.destroy',$x->id],'style'=>'display:inline']) !!}
                                      {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-fichier'] ) !!} @endcan
                                  {!! Form::close() !!}
 

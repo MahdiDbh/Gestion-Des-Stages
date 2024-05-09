@@ -72,7 +72,7 @@ class StageController extends Controller
         //   dd($request);
         $data = Stage::orderBy('id')->paginate(5);
         $this->validate($request, [
-            // 'intitule' => '',
+            // 'intitule' => 'required',
             'encadrant' => 'required',
             'stagiaire1' => 'required',
         ]);
@@ -96,10 +96,10 @@ class StageController extends Controller
         }
         $sujet = Sujet::where('id', '=', $request->intitule)->first();
         // dd($sujet);
-        $sujet->valide = 1;
+        $sujet->valide = 2;
         $sujet->save();
         
-       return view('stage.index', compact('data'));
+       return redirect()->route('stage.index');
         
 
     }
@@ -112,13 +112,10 @@ class StageController extends Controller
      */
     public function show($id)
     {
-        $log=DB::table('activity_log')->select('description','created_at')->get();
-        $user = User::find($id);
-        // activity()
-        // ->causedBy(auth()->user())
-        // ->log('Consulter l\'historique d\'un utilisateur ');
-        return view('users.show',compact('user','log'));
-
+        $stage = stage::find($id);
+        $stage->statut = 2;
+        $stage->save();
+        return back();
     }
 
     /**
@@ -129,7 +126,11 @@ class StageController extends Controller
      */
     public function edit($id)
     {
-        return view('stage.edit');
+        // dd($id);
+        $stage = stage::find($id);
+        $stage->statut = 3;
+        $stage->save();
+        return back();
     }
 
     /**
@@ -141,7 +142,27 @@ class StageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    dd($id);
+        $stage = stage::find($id);
+        $stage->statut = 3;
+        $stage->save();
+        return back();
+        // $id = $request->id;
+        // $this->validate($request, [
+            // 'intitule' => 'required',
+            // 'encadrant' => 'required',
+            // 'stagiaire' => 'rrequired',
+        // ]);
+        // $data = Stage::select()->get();
+        //  $input = $request->all();
+        //  $stg = Stage::where('id', '=', $id)->first();
+        // $stg->id_sujet = $request->intitule;
+        // $stg->id_encadrant = $request->encadrant;
+        
+        // dd($request);
+        // $stg->save();
+        //  return redirect()->route('stage.index');
+
     }
 
     /**
@@ -153,7 +174,6 @@ class StageController extends Controller
     public function destroy($id)
     {
         Stage::find($id)->delete();
-        $data = Stage::select()->get();
-        return view('stage.index', compact('data'));
+        return redirect()->route('stage.index');
     }
 }

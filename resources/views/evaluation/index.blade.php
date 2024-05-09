@@ -49,7 +49,7 @@ Gestion Evaluation
                         <td>   {{$x->note}}</td>
                         <td>   {{$x->remarque}}</td>
                         <td> 
-                            @can('evaluation-edit')  <a class="btn btn-primary" href="{{ route('evaluation.edit',1) }}">Modifier</a> @endcan
+                            @can('evaluation-edit')  <a class="btn btn-primary" href="{{ route('evaluation.edit', $x->id) }}">Modifier</a> @endcan
                             @can('evaluation-delete')     {!! Form::open(['method' => 'DELETE','route' => ['evaluation.destroy', $x->id],'style'=>'display:inline']) !!}
                                      {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-evaluation'] ) !!} @endcan
                                  {!! Form::close() !!}

@@ -31,9 +31,9 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
+        $data = User::orderBy('id','DESC')->paginate(10);
         return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -74,9 +74,9 @@ class UserController extends Controller
         if($request->roles[0] == 'Chargé de formation') $user->type_user = 'CF';
         $user->save();
         $user->assignRole($request->input('roles'));
-        activity()
-        ->causedBy(auth()->user())
-        ->log('Ajouter un utilisateur');
+        // activity()
+        // ->causedBy(auth()->user())
+        // ->log('Ajouter un utilisateur');
         return redirect()->route('users.index')
                         ->with('success','Utilisateur créé avec succès.');
     }
@@ -89,12 +89,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
-        $log=DB::table('activity_log')->select('description','created_at')->where('causer_id','=',$id)->get();
-        $user = User::find($id);
-        // activity()
-        // ->causedBy(auth()->user())
-        // ->log('Consulter l\'historique d\'un utilisateur ');
+            // dd($id);
+         // $log=DB::table('activity_log')->select('description','created_at')->where('causer_id','=',$id)->get();
+        $log = ActivityLog::where('causer_id', $id)->get();
+        // dd($log);
+         $user = User::find($id);
         return view('users.show',compact('user','log'));
     }
 

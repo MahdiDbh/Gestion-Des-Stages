@@ -31,7 +31,8 @@ class TachesController extends Controller
         $data = Taches::where('id_stage', '=' , null)
         ->with('statut')
         // ->with('user')
-        ->get();        return view('taches.index',compact('data'))
+        ->get();        
+        return view('taches.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -112,14 +113,11 @@ class TachesController extends Controller
         $this->validate($request, [
             'intitule' => 'required',
         ]);
-        $data = Taches::select()->get();
-         $input = $request->all();
          $taches = Taches::where('id', '=', $id)->first();
-         $taches = Taches::select()->get();
         $taches->intitule = $request->intitule;
         $taches->save();
         
-        return view('taches.index', compact('data'));
+        return redirect()->route('taches.index');
     }
 
     /**

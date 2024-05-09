@@ -31,37 +31,52 @@ evaluation
 
             {!! Form::text('id', null, array('class' => 'form-control ', 'hidden')) !!}
 
-            <div class="position-relative row form-group">
-                       <label for="nom" class="col-sm-2 col-form-label">Stagiaire</label>
-                       <div class="col-sm-10">
-                           {!! Form::text('evaluation', null, array('placeholder' => 'Groupe','class' => 'form-control' )) !!}
-                       </div>
-               </div>
+            
 
 
 
-           <div class="position-relative row form-group">
-                       <label for="nom" class="col-sm-2 col-form-label">Description</label>
-                       <div class="col-sm-10">
-                           {!! Form::textarea('description_sujet', null, array('placeholder' => 'description du sujet','class' => 'form-control')) !!}
-                       </div>
-                </div>
 
 
-                <div class="form-group">
-                    <strong>Encadrant</strong>
-                    <select name="encadrant" id="enc" class="form-control">
-                    @foreach($encadrant as $en)
-                    <option value='{{ $en->id }}'> {{$en->name}} </option>
-                    @endforeach
-                    </select>
-      
-                </div>
-               <div class="position-relative row form-check">
+
+            <div class="form-group">
+            <strong>Stagiaire</strong>
+            <select name="stagiaire" id="st" class="form-control">
+              @foreach($stagiaire as $st)
+              <option value='{{ $st->id }}'> {{$st->name}} </option>
+              @endforeach
+            </select>
+
+            <strong>Type d'évaluation</strong>
+            <select name="type_evaluation"  class="form-control">
+              <option value="periodique">Périodique</option>
+              <option value="finale">Finale</option>
+            </select>
+
+        </div>
+                <label for="inputName">Note</label>
+                
+                <div class="col-sm-10" >
+                           {!! Form::number('note', null, array('placeholder' => 'Groupe','class' => 'form-control' )) !!}
+                       </div>                
+                       
+              <label>Remarque</label>
+              <div class="col-sm-10">
+                           {!! Form::textarea('remarque', null, array('placeholder' => 'Groupe','class' => 'form-control' )) !!}
+                       </div> 
+
+              <div class="form-group">
+                    
+      </div>
+
+    
+
+    <div class="position-relative row form-check">
                        <div class="col-sm-10 offset-sm-2">
                            <button class="mt-1 btn btn-primary" type="submit">Modifier</button>
                        </div>
                    </div>
+  </form>
+  <!-- /.card-body -->
            {!! Form::close() !!}
    </div>
 </div>

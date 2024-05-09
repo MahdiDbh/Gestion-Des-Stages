@@ -50,8 +50,8 @@ Gestion Sujet
 
                         <td> {{$x->intitule}} </td>
                         <td>{{$x->description_sujet}}</td>
-                        <td>{{$x?->user()->first()->name}}</td>
-                        <td>{{$x->statut()->first()->description}}</td>
+                        <td>{{$x->user()->first()->name}}</td>
+                        <td>{{$x->status()->first()->description}}</td>
                         <td>
 
 

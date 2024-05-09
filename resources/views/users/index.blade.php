@@ -52,7 +52,7 @@ Gestion d'utilisateurs
       @endif
     </td>
     <td>
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Logs</a>
+       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Pointage</a>
        <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Modifier</a>
         {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Supprimer', ['class' => 'btn btn-danger delete-user'] ) !!}

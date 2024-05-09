@@ -9,7 +9,7 @@
 @endsection
 
 @section('page_title')
-Créer une nouvelle tache
+Modifier une tache
 @endsection
 
 @section('page_title1')
@@ -17,7 +17,7 @@ Gestion des taches
 @endsection
 
 @section('page_title2')
-Créer tache
+Modifier tache
 @endsection
 @section('content')
 
@@ -39,7 +39,7 @@ Créer tache
 {!! Form::model($taches, ['method' => 'PATCH','route' => ['taches.update', $taches->id]]) !!}
                {{csrf_field()}}
 
-
+       {!! Form::text('id', null, array('class' => 'form-control ', 'hidden')) !!}
               
 
     <div class="form-group">
@@ -53,7 +53,7 @@ Créer tache
     <!-- /.card-body -->
 
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary" style="margin-top: -0.5cm">Créer</button>
+      <button type="submit" class="btn btn-primary" style="margin-top: -0.5cm">Modifier</button>
     </div>    
   </div>
    </div>

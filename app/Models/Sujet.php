@@ -22,7 +22,7 @@ class Sujet extends Model
         return $this->belongsTo(User::class,'id_encadrant','id');
     }
 
-    public function statut()
+    public function status()
     {
         return $this->belongsTo(Statut::class,'valide','id');
     }

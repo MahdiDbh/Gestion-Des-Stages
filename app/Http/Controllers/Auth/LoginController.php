@@ -30,7 +30,7 @@ protected function authenticated($user)
 //}
     activity()
     ->causedBy(auth()->user())
-    ->log('Login');
+    ->log('Pointage');
  return redirect()->route('home');
 }
 

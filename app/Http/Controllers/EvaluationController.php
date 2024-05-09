@@ -31,7 +31,7 @@ class EvaluationController extends Controller
         $data = Evaluation::where('id_stage','!=' , null)
         ->with('user')
         ->get();
-
+        // dd($data);
         return view('evaluation.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -84,7 +84,7 @@ class EvaluationController extends Controller
     public function show(Evaluation $evaluation)
     {
         $evaluation=evaluation::all();
-        return view('sujet.index', compact('sujet'));
+        return view('evaluation.updat', compact('evaluation'));
     }
 
     /**
@@ -95,8 +95,10 @@ class EvaluationController extends Controller
      */
     public function edit($id)
     {
+        $stagiaire = User::where('type_user' ,'=' , 'ST')->get();
            $evaluation=Evaluation::find($id);
-        return view('evaluation.index', compact('evaluation'));
+        //    dd($evaluation);
+        return view('evaluation.edit', compact('evaluation','stagiaire'));
    
     }
 
@@ -107,9 +109,28 @@ class EvaluationController extends Controller
      * @param  \App\Models\Evaluation  $evaluation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evaluation $evaluation)
+    public function update(Request $request,$id)
     {
-        //
+        
+        $id = $request->id;
+        $this->validate($request, [
+            
+            'note'=>'required',
+            'remarque' => 'required',
+        ]);
+        $data = Evaluation::select()->get();
+        //  $input = $request->all();
+         $evaluation = Evaluation::where('id', '=', $id)->first();
+        //  dd($evaluation);
+         $evaluation->id_etudiant = $request->stagiaire;
+        $evaluation->type_evaluation = $request->type_evaluation;
+        $evaluation->note = $request->note;
+        $evaluation->remarque = $request->remarque;
+        $evaluation->save();
+        // dd($evaluation);
+        // view('evaluation.index', compact('data'));         return redirect()->route('evaluation.index');
+
+
     }
 
     /**
