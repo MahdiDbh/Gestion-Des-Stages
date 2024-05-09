@@ -106,6 +106,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
@@ -140,6 +141,12 @@ class UserController extends Controller
         $user->username = $request->name;
         $user->save();
         DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        if($request->roles[0] == 'Stagiaire') $user->type_user = 'ST';
+        if($request->roles[0] == 'Admin') $user->type_user = 'AD';
+        if($request->roles[0] == 'Encadrant') $user->type_user = 'EN';
+        if($request->roles[0] == 'Chargé de formation') $user->type_user = 'CF';
+        $user->save();
 
         $user->assignRole($request->input('roles'));
         // dd($user->hasPermissionTo('user-list'));

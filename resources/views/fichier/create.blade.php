@@ -41,7 +41,7 @@ Créer un Fichier
 
     <div class="form-group">
         <label for="intitulé">Intitulé</label>
-        <select name="s" id="st" class="form-control">
+        <select name="sujet" id="st" class="form-control">
               @foreach($sujet as $sj)
               <option value="{{ $sj->id }}" required> {{$sj->intitule}} </option>
               @endforeach

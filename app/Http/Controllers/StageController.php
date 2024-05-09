@@ -34,7 +34,7 @@ class StageController extends Controller
         // ->with('user')
         ->get();
 
-        // dd($data);
+        //  dd($data);
         return view('Stage.index',compact('data'));
 
             // ->with('i', ($request->input('page', 1) - 1) * 5);

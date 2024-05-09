@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\Fichier;
+use App\Models\stage;
 use Illuminate\Http\Request;
 
 class FichierController extends Controller
@@ -43,7 +44,7 @@ class FichierController extends Controller
     public function create()
     {
         
-        $sujet = Sujet::where('valide','=', 1)->get();
+        $sujet = Sujet::where('valide','=', 2)->get();
         
         return view('fichier.create',compact('sujet'));
     }
@@ -56,10 +57,15 @@ class FichierController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->sujet);
+
+        $stage = stage::where('id_sujet', $request->sujet)->first();
         $request->validate([
-            
+            'sujet' => 'required',
             'path_memoire' => 'required', 
-            'path_code' => 'required', 
+            'path_code' => 'required',
+           
         ]);
 
         if($request->has('path_memoire','path_code')){
@@ -72,7 +78,8 @@ class FichierController extends Controller
         }
     
         Fichier::create([
-            'id_stage' => $request->id_stage,
+            'id_sujet' => $request->sujet,
+            'id_stage' => $stage->id,
             'path_memoire' => $path.$filename,
             'path_code' => $path.$filename,
         ]);

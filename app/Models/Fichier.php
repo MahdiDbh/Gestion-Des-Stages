@@ -12,6 +12,7 @@ class Fichier extends Model
     // protected $guareded = [];
     protected $fillable = [
         'id',
+        'id_sujet',
         'id_stage',
         'path_memoire',
         'path_code',
