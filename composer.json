@@ -49,6 +49,10 @@
             "Database\\Seeders\\": "database/seeders/"
         }
         
+    },"autoload-devs": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "autoload-dev": {
         "psr-4": {
