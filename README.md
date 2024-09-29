@@ -39,21 +39,25 @@ To get a local copy of this project up and running, follow these steps:
    git clone https://github.com/MahdiDbh/Internship-and-Intern-Management.git
 
 2. **Navigate into the project directory**:
-cd Internship-and-Intern-management 
+ cd Internship-and-Intern-management 
 
-3. **nstall the dependencies:**:
-composer install
+3. **Install the dependencies**:
+   
+ composer install
 
-4. **Set up your .env file**: 
-cp .env.example .env
+5. **Set up your .env file**:
 
-5. **Generate the application key**:
-php artisan key:generate
+ cp .env.example .env
 
-6. **Run the database migrations**:
-php artisan migrate
+6. **Generate the application key**:
+   
+ php artisan key:generate
 
-7. **Start the application:**: 
-php artisan serve
+7. **Run the database migrations**:
+   
+    php artisan migrate
 
 
+8. **Start the application:**: 
+ ```bash
+ php artisan serve
