@@ -43,15 +43,15 @@ To get a local copy of this project up and running, follow these steps:
 
 3. **Install the dependencies**:
    
- composer install
+     composer install
 
 5. **Set up your .env file**:
-
- cp .env.example .env
+ 
+    cp .env.example .env
 
 6. **Generate the application key**:
    
- php artisan key:generate
+    php artisan key:generate
 
 7. **Run the database migrations**:
    
