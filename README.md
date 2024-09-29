@@ -1,5 +1,8 @@
 # Internship Management Web Application
 
+## Overview
+
+This Internship Management Web Application is designed to streamline the process of managing and tracking internship requests. Developed during my internship at the General Directorate of Algérie Poste. The application features a user-friendly interface and robust backend functionalities that cater to the needs of both interns and administrators.
 
 ## Project Description
 
@@ -31,5 +34,26 @@ This project utilizes a variety of technologies and tools, including:
 
 To get a local copy of this project up and running, follow these steps:
 
-1. Clone the repository:
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/MahdiDbh/Internship-and-Intern-Management.git
+
+2. **Navigate into the project directory**:
+cd Internship-and-Intern-management 
+
+3. **nstall the dependencies:**:
+composer install
+
+4. **Set up your .env file**: 
+cp .env.example .env
+
+5. **Generate the application key**:
+php artisan key:generate
+
+6. **Run the database migrations**:
+php artisan migrate
+
+7. **Start the application:**: 
+php artisan serve
+
 
